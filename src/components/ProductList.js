@@ -6,14 +6,13 @@ import {ProductConsumer} from '../context';
 
 
 
-
 export default function ProductList() {
     return (
         <div className="py-5">
             <div className="container">
                 <Title title="products"></Title>
                 <div className="row">
-                    <div className="col-6 mx-auto"> 
+                    <div className="col-12 mx-auto d-flex justify-content-around flex-wrap"> 
                         <ProductConsumer>
                             {
                                 (value) => {                                    
