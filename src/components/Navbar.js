@@ -21,13 +21,14 @@ export default function Navbar() {
 
 const CartButton = styled.button`
     text-transform: capitalize;
+    margin-right:5px;
     &:hover,:focus{
         border: 1px solid var(--lightBlue);
         background-color: var(--lightBlue);
     };    
 `
 const Brand = styled.div`
-    margin:5px 0;
+    margin:5px 5px;
     color: var(--mainYellow);
 `
 const Nav = styled.nav`

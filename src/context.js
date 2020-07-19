@@ -1,5 +1,5 @@
 import React from 'react';
-import {useState, useEffect, useLayoutEffect} from 'react';
+import {useState} from 'react';
 import {storeProducts} from './data';
 const ProductContext = React.createContext();
 
@@ -13,7 +13,7 @@ function ProductProvider(props) {
         //update items in state
         let productsCopy = copyArrayOfObjects(products);
         productsCopy.map(prod => {
-            prod.id == id ? prod.inCart = true: prod.inCart= prod.inCart ;
+            prod.id == id ? prod.inCart = true: prod.inCart = prod.inCart ;
         });
         setProducts(productsCopy);
         //add to cart

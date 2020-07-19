@@ -2,6 +2,7 @@ import React from 'react'
 import {ProductConsumer} from '../context';
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
+
 export default function Product(props) {
     let {id, title, img, price, inCart} = props.product;
     return (
@@ -9,7 +10,7 @@ export default function Product(props) {
             {
                 (value) => {
                     return(
-                        <ProductDiv className="col-9 mx-auto col-md-6 col-lg-3 my-3 d-flex">
+                        <ProductDiv className="col-12 mx-auto col-md-6 col-lg-3 my-3 d-flex">
                             <div className="card">
                                 <div className="img-container p-2">
                                     
@@ -41,6 +42,7 @@ export default function Product(props) {
         </ProductConsumer>
         )
 }
+
 
 const ProductDiv = styled.div`
     .card-footer{

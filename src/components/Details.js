@@ -7,14 +7,13 @@ import queryString from 'query-string';
 
 
 export default function Details(props) {
-    // console.log(props)
     return (        
         <ProductConsumer>
             {
                 (value) => {
                     const parsed = queryString.parse(props.location.search);                    
-                    const prodID = parsed.id;
-                    const index = value.products.findIndex(prod => prod.id == prodID)
+                    const prodID = parseInt(parsed.id);
+                    const index = value.products.findIndex(prod => prod.id === prodID);
                     const {id, company, img, info, price, title, inCart } = value.products[index];                                                              
                     return (
                         <div className="container py-5">
@@ -38,7 +37,7 @@ export default function Details(props) {
                                     <button className="btn btn-secondary text-capitalize mx-1" disabled={inCart ? true: false}
                                         onClick={()=> value.addToCart(id)}
                                         >
-                                        {inCart == true ? "in cart": 'add to cart'}
+                                        {inCart === true ? "in cart": 'add to cart'}
                                     </button>                                            
                                 </div>
                             </div>
