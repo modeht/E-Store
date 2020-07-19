@@ -100,7 +100,7 @@ export const storeProducts = [
     count: 0,
     total: 0
   }
-];
+]
 
 export const detailProduct = [{
   id: 1,
@@ -113,4 +113,4 @@ export const detailProduct = [{
   inCart: false,
   count: 0,
   total: 0
-}];
+}]

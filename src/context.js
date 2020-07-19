@@ -5,18 +5,17 @@ const ProductContext = React.createContext();
 
 function ProductProvider(props) {
     
-    let [products, setProducts] = useState([]);
-    let [detailedProduct, setDetailProduct] = useState([]);
+    let [products, setProducts] = useState(copyArrayOfObjects(storeProducts));
+    let [detailedProduct, setDetailProduct] = useState(copyArrayOfObjects(detailProduct));
 
-    useEffect(() => {
-        console.log('hello')
-        setProducts(copyArrayOfObjects(storeProducts));
-        setDetailProduct(copyArrayOfObjects(detailProduct));
-    }, [storeProducts, detailProduct]);    
+    // useLayoutEffect(() => {
+    //     setProducts(copyArrayOfObjects(storeProducts));
+    //     setDetailProduct(copyArrayOfObjects(detailProduct));
+    // }, []);    
     return (
         <ProductContext.Provider value={{products,detailedProduct}}>
             {/* <button onClick={changeStateValue()}>Test me</button> */}
-            {props.children};
+            {props.children}
         </ProductContext.Provider>
     )
 }
@@ -32,6 +31,7 @@ function copyArrayOfObjects(arr_objects){
         obj => {
             tempObject = {...obj};
             newArrayOfObjects.push(tempObject);
+            return true
         }
     )
     return newArrayOfObjects;

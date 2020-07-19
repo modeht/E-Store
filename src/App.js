@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Switch, Route} from 'react-router-dom';
@@ -22,7 +21,7 @@ function App() {
           <Route component={Default}></Route>  
         </Switch>
     </React.Fragment>
-  );
+  )
 }
 
 export default App;

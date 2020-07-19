@@ -4,12 +4,13 @@ import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 export default function Product(props) {
     let {id, title, img, price, inCart} = props.product;
+    let current_product =  props.product;
     return (
         <ProductDiv className="col-9 mx-auto col-md-6 col-lg-3 my-3 d-flex">
             <div className="card">
-                <div className="img-container p-2" onClick={ ()=> console.log("Clicked")}>
+                <div className="img-container p-2" onClick={()=> console.log("Clicked")}>
                     <Link to="/details">
-                        <img src={img} className="card-img-top"></img>
+                        <img src={img} className="card-img-top" alt="..."></img>
                     </Link>
                     <button className="card-btn btn btn-dark" disabled={inCart ? true: false} onClick={()=> console.log('cart added')}>
                         {inCart ? "In Cart": <i className="fa fa-cart-plus" aria-hidden="true"></i>}

@@ -1,8 +1,8 @@
 import React from 'react'
 import Product from './Product';
 import Title from './Title';
-// import {useState, useEffect} from 'react';
 import {ProductConsumer} from '../context';
+import { Link } from 'react-router-dom';
 
 
 
@@ -17,9 +17,8 @@ export default function ProductList() {
                             {
                                 (value) => {                                    
                                     return value.products.map(product => {
-                                        return <Product key={product.id} product={product}></Product>;
-                                        // return <li key={product.id}>{product.title}</li>
-                                    });
+                                        return <Product key={product.id} product={product}></Product>
+                                    })
                                 }
                             }
                         </ProductConsumer>

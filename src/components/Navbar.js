@@ -16,7 +16,7 @@ export default function Navbar() {
                 <CartButton className="btn btn-light"><i className="fa fa-cart-plus mr-2" aria-hidden="true"></i>my cart</CartButton>
             </Link>
         </Nav>
-    );
+    )
 }
 
 const CartButton = styled.button`
@@ -25,11 +25,11 @@ const CartButton = styled.button`
         border: 1px solid var(--lightBlue);
         background-color: var(--lightBlue);
     };    
-`;
+`
 const Brand = styled.div`
     margin:5px 0;
     color: var(--mainYellow);
-`;
+`
 const Nav = styled.nav`
     background-color: var(--mainBlue);
-`;
+`
