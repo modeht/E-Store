@@ -1,28 +1,37 @@
 import React from 'react';
-import {useState, useEffect} from 'react';
-import {detailProduct, storeProducts} from './data';
+import {useState, useEffect, useLayoutEffect} from 'react';
+import {storeProducts} from './data';
 const ProductContext = React.createContext();
 
 function ProductProvider(props) {
     
     let [products, setProducts] = useState(copyArrayOfObjects(storeProducts));
-    let [detailedProduct, setDetailProduct] = useState(copyArrayOfObjects(detailProduct));
-
-    // useLayoutEffect(() => {
-    //     setProducts(copyArrayOfObjects(storeProducts));
-    //     setDetailProduct(copyArrayOfObjects(detailProduct));
-    // }, []);    
-    return (
-        <ProductContext.Provider value={{products,detailedProduct}}>
-            {/* <button onClick={changeStateValue()}>Test me</button> */}
+    let [cart, setCart] = useState([]);
+    
+    
+    let addToCart = id => {
+        //update items in state
+        let productsCopy = copyArrayOfObjects(products);
+        productsCopy.map(prod => {
+            prod.id == id ? prod.inCart = true: prod.inCart= prod.inCart ;
+        });
+        setProducts(productsCopy);
+        //add to cart
+        let index = productsCopy.findIndex(prod => prod.id == id);
+        let productAddedToCart = productsCopy[index];
+        productAddedToCart.count = 1;
+        productAddedToCart.total = productAddedToCart.price * productAddedToCart.count;
+        let cartCopy = copyArrayOfObjects(cart);
+        cartCopy.push(productAddedToCart);
+        setCart(cartCopy);
+    }
+    return (        
+        <ProductContext.Provider value={{products,addToCart}}>            
             {props.children}
         </ProductContext.Provider>
     )
 }
 
-const ProductConsumer = ProductContext.Consumer;
-
-export {ProductProvider, ProductConsumer};
 
 function copyArrayOfObjects(arr_objects){
     let tempObject = {};
@@ -38,11 +47,6 @@ function copyArrayOfObjects(arr_objects){
 }
 
 
-// function changeStateValue(){
-//     let Products = copyProducts();    
-//     console.log("StoreProducts: ",storeProducts[0].inCart);
-//     console.log("Copy Products: ",Products[0].inCart);
-//     Products[0].inCart = true;    
-//     console.log("StoreProducts: ",storeProducts[0].inCart);
-//     console.log("Copy Products: ",Products[0].inCart);
-// }
+
+const ProductConsumer = ProductContext.Consumer;
+export {ProductProvider, ProductConsumer};

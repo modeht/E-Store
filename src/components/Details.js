@@ -1,16 +1,21 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import {ProductConsumer} from '../context';
-import styled from 'styled-components';
+// import styled from 'styled-components';
+import queryString from 'query-string';
+
+
 
 export default function Details(props) {
-    console.log(props)
+    // console.log(props)
     return (        
         <ProductConsumer>
             {
                 (value) => {
-                    
-                    const {id, company, img, info, price, title, inCart } = value.detailedProduct[0];                                                              
+                    const parsed = queryString.parse(props.location.search);                    
+                    const prodID = parsed.id;
+                    const index = value.products.findIndex(prod => prod.id == prodID)
+                    const {id, company, img, info, price, title, inCart } = value.products[index];                                                              
                     return (
                         <div className="container py-5">
                             <div className="row">
@@ -30,7 +35,11 @@ export default function Details(props) {
                                     <Link to='/'>
                                         <button className="btn btn-primary text-capitalize mx-1">back to products</button>
                                     </Link>
-                                    <button className="btn btn-secondary text-capitalize mx-1">{inCart ? "in cart": 'add to cart'}</button>
+                                    <button className="btn btn-secondary text-capitalize mx-1" disabled={inCart ? true: false}
+                                        onClick={()=> value.addToCart(id)}
+                                        >
+                                        {inCart == true ? "in cart": 'add to cart'}
+                                    </button>                                            
                                 </div>
                             </div>
                         </div>
