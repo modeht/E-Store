@@ -9,6 +9,7 @@ body{
   font-family: 'Poppins', sans-serif !important;
   background: var(--mainWhite) !important;
   color: var(--mainDark) !important;
+  overflow: overlay;
 }
 .text-title{
   font-family: 'Oxygen', sans-serif;
@@ -40,4 +41,20 @@ body{
   color: var(--mainWhite);
   margin-left: auto;
 
+}
+
+
+.cart-container{
+  height: 100px;
+  background-color: white;
+  width: 90%;
+  margin: 5px auto;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.img-cart{
+  width: 80px;
+  height: 80px;
 }

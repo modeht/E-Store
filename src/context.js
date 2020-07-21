@@ -25,8 +25,38 @@ function ProductProvider(props) {
         cartCopy.push(productAddedToCart);
         setCart(cartCopy);
     }
+    let more = (id) => {
+        let copyOfProductsInCart = copyArrayOfObjects(cart);
+        copyOfProductsInCart.map(item => {
+            let price = item.price;
+            if (item.id == id){
+                item.count++;
+                item.total = price * item.count;                
+            }
+        });        
+        setCart(copyOfProductsInCart);
+    }
+    let less = (id) => {
+        let newCart = [...cart];
+        let newproducts = [...products];
+        let _index;
+        let item = cart.find((item, index)=> {
+            _index = index;
+            return item.id == id;
+        });
+        if(item.count >= 1){
+            item.count--;            
+            item.total = item.price * item.count;
+            if(item.count == 0){
+                item.inCart = false;
+                newproducts.map(prod => prod.id == id ? prod.inCart = false: prod)
+                newCart.splice(_index,1);
+            }
+        }        
+        setCart(newCart);                
+    }
     return (        
-        <ProductContext.Provider value={{products,addToCart}}>            
+        <ProductContext.Provider value={{products,addToCart,cart,more,less}}>            
             {props.children}
         </ProductContext.Provider>
     )
