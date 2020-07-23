@@ -9,14 +9,14 @@ export default function Cart() {
                     return value.cart.map(item => {
                         const {id, img, title, count, price, total} = item; 
                         return (
-                            <CartDiv>
-                                <div className='cart-container' key={id}>
-                                    <img src={img} className="img-cart"alt="..."></img>
-                                    <span className="h6">Brand: {title}</span>
-                                    <span className="h6">Count: {count}</span>
-                                    <button className="btn btn-info" onClick={() => value.more(id)}>Add</button>
-                                    <button className="btn btn-danger text-capitalize" onClick={() => value.less(id)}>{count > 1 ? 'minus' : 'remove item from cart'}</button>
-                                    <span className="h6">Price: {total}</span>
+                            <CartDiv key={id}>
+                                <div className='cart-container'>
+                                    <img src={img} className="img-cart cart-item"alt="..."></img>
+                                    <span className="h6 cart-item">Brand: {title}</span>
+                                    <span className="h6 cart-item">Count: {count}</span>
+                                    <button className="btn btn-info cart-item" onClick={() => value.more(id)}>+</button>
+                                    <button className="btn btn-danger text-capitalize cart-item" onClick={() => value.less(id)}>{count > 1 ? '-' : 'remove'}</button>
+                                    <span className="h6 cart-item">Price: {total}</span>
                                 </div>
                             </CartDiv>
                         )
