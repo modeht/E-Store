@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: aa-melo-helm-chart-value-overrides
+  namespace: aa-melo
+data:
+  values.yaml: |
+    persistence:
+      size: 2048Gi  # Set this to override the default size of 1000Gi
+    minio:
+      users:
+        - accessKey: melo
+          secretKey: Aa123456
+          policy: consoleAdmin
+      environment:
+        MINIO_BROWSER_REDIRECT_URL: https://minio.melo.seedpli.city
+    plex:
+      env:
+        PLEX_CLAIM: claim-sNKeAa1fiwgFctafbN6T
+    ombi:
+      auth0:
+        enabled: true
+    traefik-forward-auth:
+      providers:
+        oidc:
+          clientId: "4tvaXzHLYEibyQMvJBl8ACGhZFlZGuBP"
+          clientSecret: "Y0k7uwlHxlkEs8qOBVKN0HxnqsWkUrlqg_BimjtsDftm198Bamu78b6-1bFR2S4N"
+      authHost: "auth.melo.seedpli.city"
+      cookie:
+        domain: "melo.seedpli.city"      
+        name: "_forward_auth_melo_seedpli_city"
+        csrfName: "_forward_auth_melo_seedpli_city_csrf"  
