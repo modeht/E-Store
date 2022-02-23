@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: aa-johnny-helm-chart-value-overrides
+  namespace: aa-johnny
+data:
+  values.yaml: |
+    persistence:
+      size: 10240Gi  # Set this to override the default size of 1000Gi
+    minio:
+      users:
+        - accessKey: johnny
+          secretKey: Aa123456
+          policy: consoleAdmin
+      environment:
+        MINIO_BROWSER_REDIRECT_URL: https://minio.johnny.seedpli.city
+    plex:
+      env:
+        PLEX_CLAIM: claim-dfXnQWiTFx4QqCXyE4dF
+    ombi:
+      auth0:
+        enabled: true
+    traefik-forward-auth:
+      providers:
+        oidc:
+          clientId: "kjMf5xr4Wk1PeuHTKXmzXJRM2PIJBqfk"
+          clientSecret: "UyW4zxadR6Iqkx--rfC3ZdhNICKehJZyVGtIbaFe6UXfw88fsCxL_wb88HY2KIK8"
+      authHost: "auth.johnny.seedpli.city"
+      cookie:
+        domain: "johnny.seedpli.city"      
+        name: "_forward_auth_johnny_seedpli_city"
+        csrfName: "_forward_auth_johnny_seedpli_city_csrf"  
